@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ImageCell: UICollectionViewCell {
     
     let imagen: UIImageView = {
         let imagen = UIImageView()
         imagen.clipsToBounds = true
-        imagen.backgroundColor = .blue
         imagen.translatesAutoresizingMaskIntoConstraints = false
         return imagen
+    }()
+    
+    let texto: UILabel = {
+        let tv = UILabel()
+        tv.textColor = .black
+        tv.textAlignment = .left
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        return tv
     }()
     
     
@@ -31,17 +39,24 @@ class ImageCell: UICollectionViewCell {
     func setUpViews(){
         
         addSubview(imagen)
-        imagen.topAnchor.constraint(equalTo: self.topAnchor, constant: 10)
-        imagen.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
-        imagen.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
+        imagen.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        imagen.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         imagen.widthAnchor.constraint(equalToConstant: 100)
+        
+        addSubview(texto)
+        texto.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        texto.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 120).isActive = true
+        texto.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         
         
     }
     
-    func configure(with userModel: User){
+    func configure(with datos: Data){
         
+        guard let url = URL(string: datos.avatar!) else { return }
         
+        imagen.af_setImage(withURL: url)
+        texto.text = "\(datos.first_name ?? "name") \(datos.last_name ?? "last name")"
         
     }
     

@@ -49,8 +49,9 @@ class ServicioController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 1
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .lightGray
+        cv.backgroundColor = .white
         cv.dataSource = self
         cv.delegate = self
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -72,11 +73,11 @@ class ServicioController: UIViewController {
     
     func setUpViews(){
         
-        view.addSubview(botonConsumir)
-        self.botonConsumir.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        self.botonConsumir.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
-        self.botonConsumir.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        self.botonConsumir.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//        view.addSubview(botonConsumir)
+//        self.botonConsumir.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        self.botonConsumir.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
+//        self.botonConsumir.widthAnchor.constraint(equalToConstant: 200).isActive = true
+//        self.botonConsumir.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //view.addSubview(textoRespuesta)
 //        self.textoRespuesta.centerXAnchor.constraint(equalTo: botonConsumir.centerXAnchor).isActive = true
@@ -143,12 +144,16 @@ extension ServicioController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ImageCell
-        cell.backgroundColor = .red
+        cell.backgroundColor = .white
+        if let data = user.data {
+            cell.configure(with: (data[indexPath.row]))
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: view.bounds.height * 0.4)
+        return CGSize(width: view.bounds.width, height: view.bounds.height * 0.2)
     }
     
     
