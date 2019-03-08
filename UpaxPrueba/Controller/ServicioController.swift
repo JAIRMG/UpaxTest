@@ -73,20 +73,6 @@ class ServicioController: UIViewController {
     
     func setUpViews(){
         
-//        view.addSubview(botonConsumir)
-//        self.botonConsumir.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        self.botonConsumir.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
-//        self.botonConsumir.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//        self.botonConsumir.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        //view.addSubview(textoRespuesta)
-//        self.textoRespuesta.centerXAnchor.constraint(equalTo: botonConsumir.centerXAnchor).isActive = true
-//        self.textoRespuesta.topAnchor.constraint(equalTo: botonConsumir.bottomAnchor, constant: 20).isActive = true
-//        self.textoRespuesta.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-//        self.textoRespuesta.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-//        self.textoRespuesta.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        
-        
         collectionView.frame = view.frame
         view.addSubview(collectionView)
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: cellId)
@@ -99,32 +85,11 @@ class ServicioController: UIViewController {
             print(user)
             self.user = user
             self.collectionView.reloadData()
-            //self.setText()
         }
         
         
     }
-    
-    func setText(){
-        
-        var data: [Data] = []
-        
-        let numberOfData = self.user.data?.count
-        
-        var texto = ""
-        
-        texto.append("User page: \(user.page)\n Per page \(user.per_page) \n total \(user.total) \n total page \(user.total_pages)")
-        
-       
-        
-//        for i in 0..<numberOfData!{
-//            data[i] = self.user.data[i]
-//            texto += data[i].
-//        }
-        
-        textoRespuesta.text = texto
-        
-    }
+
     
     func configureNavigationBar(){
         navigationController?.navigationBar.barTintColor = .blue
